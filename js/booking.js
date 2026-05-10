@@ -348,7 +348,7 @@ async function fetchBookingBarberHours() {
   const barberName = document.querySelector('input[name="barber"]:checked')?.value;
   if (!barberName) return;
   try {
-    const { data: barberData } = await db.from('barbers').select('id').eq('name', barberName).single();
+    const { data: barberData } = await db.from('barbers').select('id').eq('name', barberName + ' [DEMO]').single();
     if (!barberData) return;
     _bookingBarberId = barberData.id;
     const [hRes, oRes] = await Promise.all([
@@ -474,7 +474,7 @@ async function generateTimeSlots() {
   let barberId = null;
   if (barberName) {
     try {
-      const { data: barberData } = await db.from('barbers').select('id').eq('name', barberName).single();
+      const { data: barberData } = await db.from('barbers').select('id').eq('name', barberName + ' [DEMO]').single();
       if (barberData) barberId = barberData.id;
     } catch (e) { console.warn(e); }
   }
@@ -661,7 +661,7 @@ async function submitBooking() {
 
     // 2. Get barber ID
     const { data: barberData, error: barberErr } = await db
-      .from('barbers').select('id').eq('name', barberName).single();
+      .from('barbers').select('id').eq('name', barberName + ' [DEMO]').single();
     if (barberErr || !barberData) throw new Error('ספר לא נמצא במערכת');
 
     const isWaitlist = (time === 'waitlist');

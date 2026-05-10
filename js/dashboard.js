@@ -12,8 +12,8 @@ let dashAppointmentsCache = [];
 let dashCalendarMonth = new Date().getMonth();
 let dashCalendarYear = new Date().getFullYear();
 
-const SUPA_URL = 'https://demo.supabase.co';
-const API_KEY = 'demo';
+const SUPA_URL = 'https://yaboiwxuhhfkbjmqgeet.supabase.co';
+const API_KEY = 'daf2070b12c93016669838e9c498684fd2f86abc39901950';
 
 const HEB_DAYS = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
 const DEFAULT_HOURS = {
@@ -97,7 +97,7 @@ async function dashLogin() {
 
   try {
     const { data: barberData, error } = await db
-      .from('barbers').select('*').eq('name', barberName).single();
+      .from('barbers').select('*').eq('name', barberName + ' [DEMO]').single();
     if (error || !barberData) {
       showToast('הספר לא נמצא במערכת', 'error');
       return;
@@ -530,7 +530,7 @@ async function sendAppointmentReminder(id) {
   await sendPushNotification(
     appt.phone,
     '✂️ תזכורת תור',
-    `היי, ${appt.customer_name || 'לקוח'}! תזכורת שיש לך תור היום בשעה ${appt.appointment_time.slice(0,5)} אצל המספרה של דני`,
+    `היי, ${appt.customer_name || 'לקוח'}! תזכורת שיש לך תור היום בשעה ${appt.appointment_time.slice(0,5)} אצל רון עמר מספרה`,
     appt.id
   );
 }
