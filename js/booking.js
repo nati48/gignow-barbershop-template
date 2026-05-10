@@ -3,7 +3,7 @@
    ============================================ */
 
 let currentStep = 1;
-const totalSteps = 5;
+const totalSteps = 6;
 let generatedOTP = '';
 let loadedServices = [];
 let confirmationResult = null;
@@ -12,13 +12,15 @@ let firebaseReady = false;
 let _selectedDate = '';
 let _selectedTime = '';
 
-// ── Demo fallback barbers ─────────────────
-const DEMO_BARBERS = [
-  { id: 'demo-1', name: 'אבי ישראלי', base_price: 80 },
-  { id: 'demo-2', name: 'דניאל כהן', base_price: 60 },
-  { id: 'demo-3', name: 'עידו לוי', base_price: 60 },
-  { id: 'demo-4', name: 'יוסי מזרחי', base_price: 100 },
-];
+// Check Firebase
+try {
+  if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length > 0) {
+    firebaseReady = true;
+    console.log('✅ Firebase ready for Phone Auth');
+  }
+} catch(e) {
+  console.warn('Firebase not available');
+}
 
 // ── Load barbers dynamically ─────────────────
 async function loadBarberOptions() {
@@ -26,15 +28,8 @@ async function loadBarberOptions() {
   if (!container) return;
   container.innerHTML = '<div class="flex justify-center py-4"><div class="spinner"></div></div>';
   try {
-    let barbers;
-    try {
-      const res = await fetch('/api/barbers');
-      if (!res.ok) throw new Error('API error');
-      barbers = await res.json();
-      if (!barbers.length) throw new Error('empty');
-    } catch(e) {
-      barbers = DEMO_BARBERS;
-    }
+    const res = await fetch('/api/barbers');
+    const barbers = await res.json();
     container.innerHTML = '';
     function _esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
     barbers.forEach(b => {
@@ -65,15 +60,8 @@ async function loadDashBarberSelect() {
   const sel = document.getElementById('dash-barber-select');
   if (!sel) return;
   try {
-    let barbers;
-    try {
-      const res = await fetch('/api/barbers');
-      if (!res.ok) throw new Error('API error');
-      barbers = await res.json();
-      if (!barbers.length) throw new Error('empty');
-    } catch(e) {
-      barbers = DEMO_BARBERS;
-    }
+    const res = await fetch('/api/barbers');
+    const barbers = await res.json();
     sel.innerHTML = '';
     barbers.forEach(b => {
       const opt = document.createElement('option');
@@ -158,10 +146,10 @@ function goToStep(step) {
   else btnBack.classList.remove('hidden');
 
   btnNext.disabled = false; // Always re-enable on step change
-  if (step === 4) btnNext.textContent = 'אשר תור';
-  else if (step < 4) btnNext.textContent = 'המשך לשלב הבא';
+  if (step === 5) btnNext.textContent = 'אשר תור';
+  else if (step < 5) btnNext.textContent = 'המשך לשלב הבא';
 
-  if (step === 5) footer.classList.add('hidden');
+  if (step === 6) footer.classList.add('hidden');
   else footer.classList.remove('hidden');
 }
 
@@ -194,11 +182,13 @@ async function nextStep() {
     if (!name || name.length < 2) { alert('אנא הכנס שם מלא'); return; }
     if (!phone || phone.replace(/\D/g, '').length < 9) { alert('אנא הכנס מספר טלפון תקין'); return; }
 
-    // Submit booking directly (no OTP)
-    const btnNext = document.getElementById('btn-next');
-    btnNext.disabled = true;
-    btnNext.textContent = 'שומר תור...';
-    await submitBooking();
+    // Send OTP via Firebase
+    document.getElementById('verify-phone-display').textContent = phone;
+    sendFirebaseOTP(phone);
+    goToStep(5);
+
+  } else if (currentStep === 5) {
+    verifyOTPAndSubmit();
   }
   } catch(e) { console.error('nextStep error:', e); }
 }
@@ -728,7 +718,7 @@ async function submitBooking() {
       } catch(e) { console.warn('Could not save email:', e); }
     }
 
-    goToStep(5);
+    goToStep(6);
 
     // Auto-subscribe to push if already permitted
     if (typeof subscribeToPush === 'function' && Notification.permission === 'granted') {
