@@ -12,8 +12,8 @@ let dashAppointmentsCache = [];
 let dashCalendarMonth = new Date().getMonth();
 let dashCalendarYear = new Date().getFullYear();
 
-const SUPA_URL = 'https://YOUR_PROJECT.supabase.co';
-const API_KEY = '';
+const SUPA_URL = 'https://demo.supabase.co';
+const API_KEY = 'demo';
 
 const HEB_DAYS = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
 const DEFAULT_HOURS = {
