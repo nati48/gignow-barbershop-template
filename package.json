@@ -1,0 +1,25 @@
+{
+  "name": "ronamar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api-proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nati48/gignow-barbershop-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nati48/ronamar/issues"
+  },
+  "homepage": "https://github.com/nati48/ronamar#readme",
+  "dependencies": {
+    "nodemailer": "^8.0.7",
+    "web-push": "^3.6.7"
+  }
+}

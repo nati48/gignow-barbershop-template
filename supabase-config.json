@@ -1,0 +1,6 @@
+{
+  "supabaseUrl": "YOUR_SUPABASE_URL",
+  "supabaseAnonKey": "YOUR_ANON_KEY",
+  "supabaseServiceKey": "YOUR_SERVICE_ROLE_KEY",
+  "projectRef": "YOUR_PROJECT_REF"
+}
