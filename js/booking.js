@@ -12,14 +12,29 @@ let firebaseReady = false;
 let _selectedDate = '';
 let _selectedTime = '';
 
+// ── Demo fallback barbers ─────────────────
+const DEMO_BARBERS = [
+  { id: 'demo-1', name: 'אבי ישראלי', base_price: 80 },
+  { id: 'demo-2', name: 'דניאל כהן', base_price: 60 },
+  { id: 'demo-3', name: 'עידו לוי', base_price: 60 },
+  { id: 'demo-4', name: 'יוסי מזרחי', base_price: 100 },
+];
+
 // ── Load barbers dynamically ─────────────────
 async function loadBarberOptions() {
   const container = document.getElementById('barber-options-container');
   if (!container) return;
   container.innerHTML = '<div class="flex justify-center py-4"><div class="spinner"></div></div>';
   try {
-    const res = await fetch('/api/barbers');
-    const barbers = await res.json();
+    let barbers;
+    try {
+      const res = await fetch('/api/barbers');
+      if (!res.ok) throw new Error('API error');
+      barbers = await res.json();
+      if (!barbers.length) throw new Error('empty');
+    } catch(e) {
+      barbers = DEMO_BARBERS;
+    }
     container.innerHTML = '';
     function _esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
     barbers.forEach(b => {
@@ -50,8 +65,15 @@ async function loadDashBarberSelect() {
   const sel = document.getElementById('dash-barber-select');
   if (!sel) return;
   try {
-    const res = await fetch('/api/barbers');
-    const barbers = await res.json();
+    let barbers;
+    try {
+      const res = await fetch('/api/barbers');
+      if (!res.ok) throw new Error('API error');
+      barbers = await res.json();
+      if (!barbers.length) throw new Error('empty');
+    } catch(e) {
+      barbers = DEMO_BARBERS;
+    }
     sel.innerHTML = '';
     barbers.forEach(b => {
       const opt = document.createElement('option');
