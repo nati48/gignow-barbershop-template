@@ -1,5 +1,5 @@
 // Service Worker for Ron Amar PWA - v3 (Offline-capable + Push Notifications)
-const CACHE_NAME = 'barber-demo-v3';
+const CACHE_NAME = 'barber-demo-v4';
 const OFFLINE_URL = '/offline.html';
 
 // Critical assets to pre-cache on install
