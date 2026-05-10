@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="95" fill="#1A1A1A" stroke="#C5A059" stroke-width="3"/>
+  <text x="100" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#C5A059" letter-spacing="3">✂ BARBER</text>
+  <text x="100" y="105" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="#FFFFFF" letter-spacing="2">DEMO</text>
+  <line x1="55" y1="118" x2="145" y2="118" stroke="#C5A059" stroke-width="2"/>
+  <text x="100" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888888" letter-spacing="4">TEMPLATE</text>
+</svg>
