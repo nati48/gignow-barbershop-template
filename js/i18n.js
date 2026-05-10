@@ -39,12 +39,12 @@
       hero_kicker: 'הסטנדרט החדש של גברים',
       hero_title_1: 'חוויית הטיפוח',
       hero_title_2: 'המושלמת לגבר',
-      hero_subtitle: 'המספרה של דני כהן מביאה את סגנון הברברשופ הקלאסי לרמה חדשה של דיוק, מקצועיות ואווירה.',
+      hero_subtitle: 'המספרה של הברבר שלך מביאה את סגנון הברברשופ הקלאסי לרמה חדשה של דיוק, מקצועיות ואווירה.',
       hero_cta_book: 'הזמן תור עכשיו',
       hero_cta_services: 'מחירון ושירותים',
 
       // About / Profile
-      about_ron_name: 'דני כהן',
+      about_ron_name: 'הברבר שלך',
       about_ron_role: 'מייסד וספר ראשי',
       about_ron_bio: 'עם אהבה למקצוע ותשומת לב לפרטים הקטנים ביותר, הקמתי את המספרה כדי להעניק לגברים חוויית טיפוח שלא מסתכמת רק בתספורת. מקצועיות, יחס אישי ואווירה יוקרתית הם הבסיס לכל לקוח שמתיישב אצלי בכיסא.',
       feature_1_title: 'דיוק חסר פשרות',
@@ -99,7 +99,7 @@
       footer_days_fri: 'שישי',
       footer_days_sat: 'שבת',
       footer_closed: 'סגור',
-      footer_copyright_html: '&copy; <span id="footer-year"></span> המספרה של דני. כל הזכויות שמורות.',
+      footer_copyright_html: '&copy; <span id="footer-year"></span> THE BARBER. כל הזכויות שמורות.',
 
       // Booking modal
       booking_title_html: '<i class="fa-solid fa-calendar-check text-gold"></i> הזמנת תור',

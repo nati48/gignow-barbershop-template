@@ -1,6 +1,6 @@
 {
-  "name": "GigNow דוגמה - מספרת גברים",
-  "short_name": "GigNow דוגמה",
+  "name": "GigNow Barber - מספרת גברים",
+  "short_name": "GigNow Barber",
   "description": "דוגמת אתר הזמנת תורים למספרה - GigNow",
   "start_url": "/",
   "scope": "/",
